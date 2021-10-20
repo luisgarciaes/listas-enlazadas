@@ -81,9 +81,9 @@ class App{
     let btnAdd = document.getElementById("btnAdd");
     btnAdd.addEventListener("click", this._addProduct);
     let btnRemove = document.querySelector("#btnRemove");
-    btnRemove.addEventListener("click", this._showArr)
+    btnRemove.addEventListener("click", this._removeProduct)
     let btnFind = document.querySelector("#btnFind");
-    btnFind.addEventListener("click", this._showArr);
+    btnFind.addEventListener("click", this._findProduct);
     let btnReturn = document.querySelector("#btnReturn");
     btnReturn.addEventListener("click", this._returnInventory);
     let btnReturnReverse = document.querySelector("#btnReturnReverse");
@@ -94,15 +94,9 @@ class App{
     }
     _returnInventory = () =>{
         console.log(this._inventory.list())
+        console.log(this._inventory)
+        console.log(this._inventory[0])
         
-    }
-    _checkIfFull(){
-        let regSize = this._inventory.length;
-        if(regSize >= 19){
-            return true;
-        }else{
-            return false;
-        }
     }
     _addProduct = () => {
         let product = new Product(document.getElementById("id").value,document.getElementById("name").value
@@ -121,22 +115,25 @@ class App{
 
     }
     
-    _addProductInPosition = (x) => {
-        y = this._inventory.find(x)
-        if (y == null) {
-            console.log("A product named '" + x.info() + "' does not exist.")
-        }else{
-            console.log("The product '" + x.info() + "' has been replaced.")
-        }
 
-    };
-
-    _removeProduct = (x) => {
-        y = this._inventory.eliminate(x)
+    _removeProduct = () => {
+        let x = document.getElementById("findRemove").value;
+        let y = this._inventory.delete(x)
         if (y == null) {
             console.log("The product with the ID '" + x + "' does not exist.")
         }else{
-            console.log("The product '" + x.info() + "' has been deleted.")
+            console.log("The product '" + y.info() + "' has been deleted.")
+            this._inventory.delete(x)
+        }
+
+    };
+    _findProduct = () => {
+        let x = document.getElementById("findRemove").value;
+        let y = this._inventory.find(x)
+        if (y == null) {
+            console.log("The product with the ID '" + x + "' does not exist.")
+        }else{
+            console.log(y.info())
         }
 
     };
