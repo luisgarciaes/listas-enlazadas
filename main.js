@@ -10,7 +10,7 @@ class Product{
     info(){
         return this._id + ":-> " + this._name;
       }
-  }
+    
 }
 class Inventory{
     constructor(){
@@ -34,6 +34,17 @@ class Inventory{
         }
         return x;
     }
+    search(id){
+        if (!this.start)
+          return null;
+        let aux=this.start;
+        while(aux!=null){
+          if (aux.id==id)
+            return aux;
+          aux=aux.next;
+        }
+        return null;
+      }
 
 
 }
