@@ -11,18 +11,23 @@
 <body>
     <h2>Add or replace products </h2>
       <div class="content-info">
-        <form>
+        <form id ="form1">
           <div class="field">
             <label>ID:*</label>
             <input id="id" type="text" size=35 required>
+            <br>
             <label>Name:*</label>
             <input id="name" type="text" size=35 required>
+            <br>
             <label>Units:*</label>
             <input id="units" type="text" size=35 required>
+            <br>
             <label>Cost:*</label>
             <input id="cost" type="text" size=35 required>
+            <br>
             <label>Position:</label>
             <input id="position" type="text" size=35>
+            <br>
           </div>
           <div class="field">
             <br>
@@ -34,12 +39,16 @@
             <br>
             <br>
             <h2>Other</h2>
-            <form>
+            <form id="form2">
             <label>ID:</label>
             <input id="findRemove" type="text" size=35 required>
-            </form>
+            <br>
+            <br>
+            </form >
+            <br>
             <button id="btnRemove" type="button" value="Eliminar producto">Remove</button> 
             <button id="btnFind" type="button" value="Buscar producto">Find</button> 
+            <br>
             <br>
             <br>
             <button id="btnReturn" type="button" value="Recuperar productos">Return product list</button> 

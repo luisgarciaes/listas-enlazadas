@@ -9,7 +9,7 @@ class Product{
         this.next=null;
     }
     info(){
-        return this._id + "- " + this._name + " " + this._units + " " + this._cost;
+        return this._id + " - " + this._name + " " + this._units + " " + this._cost;
       }
     
 }
@@ -61,6 +61,15 @@ class Inventory{
         }
         return x;
     }
+    listRev(){
+        let x='';
+        let temp=this.start;
+        while (temp!=null){
+          x = temp.info() + "\n" + x
+          temp=temp.next;
+        }
+        return x;
+      }
     find(id){
         if (!this.start)
           return null;
@@ -113,7 +122,7 @@ class App{
     let btnReturn = document.querySelector("#btnReturn");
     btnReturn.addEventListener("click", this._returnInventory);
     let btnReturnReverse = document.querySelector("#btnReturnReverse");
-    btnReturnReverse.addEventListener("click", this.test);
+    btnReturnReverse.addEventListener("click", this._returnReverseInventory);
     
     }
     _updateConsole = (x,y) =>{
@@ -123,12 +132,17 @@ class App{
         console.log(this._inventory.list())
         
     }
+    _returnReverseInventory = () =>{
+        console.log(this._inventory.listRev())
+        
+    }
     test = () =>{
         console.log(this._inventory)
         
     }
     
     _addProduct = () => {
+        let form =  document.getElementById("form1")
         let product = new Product(document.getElementById("id").value,document.getElementById("name").value
         ,document.getElementById("units").value,document.getElementById("cost").value);
         let position = document.getElementById("position").value;
@@ -139,10 +153,14 @@ class App{
             console.log(y)
             if(position == ""){
                 this._inventory.add(product);
-                console.log("The product '" + product.info() + "' has been added1.")
+                console.log("The product '" + product.info() + "' has been added.")
+                form.reset()
+
             }else{
                 this._inventory._addN(product,position)
-                console.log("The product '" + product.info() + "' has been added2.")
+                console.log("The product '" + product.info() + "' has been added.")
+                form.reset()
+                
             }
         }else{
             console.log("The product '" + product.info() + "' already exists in the inventory.")
@@ -155,6 +173,7 @@ class App{
     
 
     _removeProduct = () => {
+        let form =  document.getElementById("form2")
         let x = document.getElementById("findRemove").value;
         let y = this._inventory.delete(x)
         if (y == null) {
@@ -162,6 +181,7 @@ class App{
         }else{
             console.log("The product '" + y.info() + "' has been deleted.")
             this._inventory.delete(x)
+            form.reset()
         }
 
     };
