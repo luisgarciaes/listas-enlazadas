@@ -1,3 +1,4 @@
+
 class Product{
     constructor(id,name,units,cost){
         this._id = id;
@@ -23,6 +24,40 @@ class Inventory{
     _add(x,y){
         if(y.next==null){y.next=x}
         else{this._add(x,y.next)}
+    }
+    addN(x,position){
+        if(this.start==null){
+            if (position!=0) {
+                console.log("fail1")
+                return;
+            }
+
+        }else{
+            this.start = x;
+            console.log("fail2")
+
+        }
+        if (this.start != null && position == 0) {
+            x.next = this.start;
+            this.start = x;
+            console.log("fail3")
+            return;
+          }
+          let current = this.start;
+          let previous = null;
+          let i = 0;
+          while (i < position) {
+            previous = current;
+            current = current.next;
+            if (current == null) {
+              break;
+            }
+             i++;
+            }
+            console.log("fail4")
+            x.next = current;
+            previous.next = x;
+            
     }
 
     list(){
@@ -77,7 +112,6 @@ class App{
     constructor(){
     this._inventory = new Inventory()
 
-    //this._consoleText = document.querySelector("#console")
     let btnAdd = document.getElementById("btnAdd");
     btnAdd.addEventListener("click", this._addProduct);
     let btnRemove = document.querySelector("#btnRemove");
@@ -88,26 +122,34 @@ class App{
     btnReturn.addEventListener("click", this._returnInventory);
     let btnReturnReverse = document.querySelector("#btnReturnReverse");
     btnReturnReverse.addEventListener("click", this._showArr);
+    
     }
     _updateConsole = (x,y) =>{
         
     }
     _returnInventory = () =>{
         console.log(this._inventory.list())
-        console.log(this._inventory)
-        console.log(this._inventory[0])
         
     }
+    
     _addProduct = () => {
         let product = new Product(document.getElementById("id").value,document.getElementById("name").value
         ,document.getElementById("units").value,document.getElementById("cost").value);
-        let y = this._inventory.find(product)
-        if (y == null) {
-        this._inventory.add(product);
-        console.log(this._inventory.list())
+        let position = document.getElementById("position").value;
+        let y = this._inventory.find(product._id)
         
+        if (y == null) {
+            console.log(position)
+            console.log(y)
+            if(position == ""){
+                this._inventory.add(product);
+                console.log("The product '" + product.info() + "' has been added1.")
+            }else{
+                this._inventory.addN(product,position)
+                console.log("The product '" + product.info() + "' has been added2.")
+            }
         }else{
-            console.log("what")
+            console.log("The product '" + product.info() + "' already exists in the inventory.")
         }
 
        
