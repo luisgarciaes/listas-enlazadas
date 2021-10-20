@@ -124,9 +124,11 @@ class App{
     let btnReturnReverse = document.querySelector("#btnReturnReverse");
     btnReturnReverse.addEventListener("click", this._returnReverseInventory);
     
+    
     }
-    _updateConsole = (x,y) =>{
-        
+    updateConsole = (x) =>{
+        let y = document.getElementById("changelog")
+        y.value = x;
     }
     _returnInventory = () =>{
         console.log(this._inventory.list())
@@ -142,6 +144,7 @@ class App{
     }
     
     _addProduct = () => {
+        let consoleText = document.getElementById("changelog")
         let form =  document.getElementById("form1")
         let product = new Product(document.getElementById("id").value,document.getElementById("name").value
         ,document.getElementById("units").value,document.getElementById("cost").value);
@@ -153,45 +156,55 @@ class App{
             console.log(y)
             if(position == ""){
                 this._inventory.add(product);
-                console.log("The product '" + product.info() + "' has been added.")
-                form.reset()
+                console.log("The product '" + product.info() + "' has been added.");
+                consoleText.innerHTML ="The product '" + product.info() + "' has been added.";
+                form.reset();
 
             }else{
                 this._inventory._addN(product,position)
                 console.log("The product '" + product.info() + "' has been added.")
+                consoleText.innerHTML ="The product '" + product.info() + "' has been added."
                 form.reset()
                 
             }
         }else{
             console.log("The product '" + product.info() + "' already exists in the inventory.")
+            consoleText.innerHTML ="The product '" + product.info() + "' already exists in the inventory."
         }
 
        
-        //this._updateConsole(product,1)
+        //this.consoleText.innerHTML =product,1)
 
     }
     
 
     _removeProduct = () => {
-        let form =  document.getElementById("form2")
+        let consoleText = document.getElementById("changelog")
+        let form = document.getElementById("form2")
         let x = document.getElementById("findRemove").value;
         let y = this._inventory.delete(x)
         if (y == null) {
             console.log("The product with the ID '" + x + "' does not exist.")
+            consoleText.innerHTML ="The product with the ID '" + x + "' does not exist."
         }else{
             console.log("The product '" + y.info() + "' has been deleted.")
+            consoleText.innerHTML ="The product '" + y.info() + "' has been deleted."
             this._inventory.delete(x)
-            form.reset()
+            form.reset();
         }
 
     };
     _findProduct = () => {
+        let consoleText = document.getElementById("changelog")
         let x = document.getElementById("findRemove").value;
         let y = this._inventory.find(x)
         if (y == null) {
             console.log("The product with the ID '" + x + "' does not exist.")
+            consoleText.innerHTML ="The product with the ID '" + x + "' does not exist."
+            
         }else{
             console.log(y.info())
+            consoleText.innerHTML = y.info()
         }
 
     };
