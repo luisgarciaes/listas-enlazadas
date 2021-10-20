@@ -39,11 +39,36 @@ class Inventory{
           return null;
         let aux=this.start;
         while(aux!=null){
-          if (aux.id==id)
+          if (aux._id==id)
             return aux;
           aux=aux.next;
         }
         return null;
+      }
+      eliminate(id){
+        let eliminated=null;
+        if (!this.start)
+          return null;
+        if (this.start._id==id){
+          eliminated=this.start;
+          this.start=this.start.next;
+          return eliminated;
+        } else {
+          let x=this.start;
+          let y=this.start.next;
+          while(y!=null){
+            if (y._id==id){
+              x.next=x.next.next;
+              eliminated=y;
+              eliminated.next=null;
+              return eliminated;
+            } else {
+              x=y;
+              y=y.next;
+            }
+          }
+          return null;
+        }
       }
 
 
@@ -66,4 +91,4 @@ i.add(p1);
 p1=new Product(7,1,1,1,1);
 i.add(p1);
 console.log(i.list());
-console.log(i.search());
+console.log(i.search(4));
