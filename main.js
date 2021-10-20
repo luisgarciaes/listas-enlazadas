@@ -45,23 +45,23 @@ class Inventory{
         }
         return null;
       }
-      eliminate(id){
-        let eliminated=null;
+      delete(id){
+        let deleted=null;
         if (!this.start)
           return null;
         if (this.start._id==id){
-          eliminated=this.start;
+          deleted=this.start;
           this.start=this.start.next;
-          return eliminated;
+          return deleted;
         } else {
           let x=this.start;
           let y=this.start.next;
           while(y!=null){
             if (y._id==id){
               x.next=x.next.next;
-              eliminated=y;
-              eliminated.next=null;
-              return eliminated;
+              deleted=y;
+              deleted.next=null;
+              return deleted;
             } else {
               x=y;
               y=y.next;
