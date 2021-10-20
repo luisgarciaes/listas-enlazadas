@@ -1,5 +1,5 @@
 class Product{
-    constructor(id,name){
+    constructor(id,name,units,cost){
         this._id = id;
         this._name = name;
         this._units = units;
@@ -16,13 +16,13 @@ class Inventory{
     constructor(){
         this.start=null;
     }
-    add(){
+    add(x){
         if(this.start==null){this.start=x;}
-        else{this.add(x,this.start)}
+        else{this._add(x,this.start)}
     }
-    _add(){
-        if(last.next==null){last.next=nuevo}
-        else{this._agregar(nuevo,last.next)}
+    _add(x,y){
+        if(y.next==null){y.next=x}
+        else{this._add(x,y.next)}
     }
 
     list(){
@@ -51,3 +51,19 @@ class Inventory{
 class App{
     
 }
+
+let i=new Inventory();
+let p1=new Product(1,1,1,1,1);
+i.add(p1);
+p1=new Product(2,1,1,1,1);
+i.add(p1);
+p1=new Product(3,3,3,3,3);
+i.add(p1);
+p1=new Product(4,1,1,1,1);
+i.add(p1);
+p1=new Product(5,1,1,1,1);
+i.add(p1);
+p1=new Product(7,1,1,1,1);
+i.add(p1);
+console.log(i.list());
+console.log(i.search());
