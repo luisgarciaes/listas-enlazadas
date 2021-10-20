@@ -6,8 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
+    <h2>Add or replace products </h2>
+      <div class="content-info">
+        <form>
+          <div class="field">
+            <label>ID:*</label>
+            <input id="id" type="text" size=35 required>
+            <label>Name:*</label>
+            <input id="name" type="text" size=35 required>
+            <label>Units:*</label>
+            <input id="units" type="text" size=35 required>
+            <label>Cost:*</label>
+            <input id="cost" type="text" size=35 required>
+            <label>Position:</label>
+            <input id="position" type="text" size=35>
+          </div>
+          <div class="field">
+            <br>
+        </form>
+        
+            <button id="btnAdd" type="button" value="Agregar producto">Add</button> 
+            <p>* Required</p>
+            <p>If a position is not specified, the product will be added at the end of the list.</p>
+            <br>
+            <br>
+            <h2>Other</h2>
+            <form>
+            <label>ID:</label>
+            <input id="cost" type="text" size=35 required>
+            </form>
+            <button id="btnRemove" type="button" value="Eliminar producto">Remove</button> 
+            <button id="btnFind" type="button" value="Buscar producto">Find</button> 
+            <br>
+            <br>
+            <button id="btnReturn" type="button" value="Recuperar productos">Return product list</button> 
+            <button id="btnReturnReverse" type="button" value="Recuperar producto inverso">Return reverse product list</button> 
+          </div>
+        
+      </div>
     <table>
         <tr>
           <th>ID</th>
@@ -34,6 +73,6 @@
             <td>1</td>
           </tr>
       </table>
-    
+      <script src="main.js"></script> 
 </body>
 </html>
