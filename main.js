@@ -90,32 +90,11 @@ class App{
     btnReturnReverse.addEventListener("click", this._showArr);
     }
     _updateConsole = (x,y) =>{
-        let message = "";
-        switch (y) {
-            case 1:
-                message = "Se agregó el producto " + x._name + " correctamente.";
-                break;
-            case 2:
-                message = "Se borró el producto " + x._name + " correctamente.";
-                break;
-            case 3:
-                message = "Se borró el producto " + x._name + " correctamente.";
-                break;
-            case 4:
-                message = "Se borró el producto " + x._name + " correctamente.";
-                break;
-            case 5:
-                message = this._inventory.toString();
-                break;
-        }
+        
     }
-    _returnInventory(){
-        if(this._inventory === undefined){
-            console.log("good")
-            return "good";
-        }
-        let x = this._inventory.toString();
-        return x;
+    _returnInventory = () =>{
+        console.log(this._inventory.list())
+        
     }
     _checkIfFull(){
         let regSize = this._inventory.length;
@@ -126,17 +105,19 @@ class App{
         }
     }
     _addProduct = () => {
-        if(this._checkIfFull()){
-            alert("full");
-            return;
+        let product = new Product(document.getElementById("id").value,document.getElementById("name").value
+        ,document.getElementById("units").value,document.getElementById("cost").value);
+        let y = this._inventory.find(product)
+        if (y == null) {
+        this._inventory.add(product);
+        console.log(this._inventory.list())
+        
+        }else{
+            console.log("what")
         }
 
-       let product = new Product(document.getElementById("id").value,document.getElementById("name").value
-        ,document.getElementById("units").value,document.getElementById("cost").value);
-
-        this._inventory.add(product);
-        this._updateConsole(product,1)
-        console.log(this._inventory.list())
+       
+        //this._updateConsole(product,1)
 
     }
     
