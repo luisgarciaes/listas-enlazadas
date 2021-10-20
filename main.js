@@ -9,7 +9,7 @@ class Product{
         this.next=null;
     }
     info(){
-        return this._id + "-> " + this._name + " " + this._units + " " + this._cost;
+        return this._id + "- " + this._name + " " + this._units + " " + this._cost;
       }
     
 }
@@ -25,22 +25,15 @@ class Inventory{
         if(y.next==null){y.next=x}
         else{this._add(x,y.next)}
     }
-    addN(x,position){
+    _addN(x,position){
         if(this.start==null){
             if (position!=0) {
-                console.log("fail1")
                 return;
             }
-
-        }else{
-            this.start = x;
-            console.log("fail2")
-
         }
         if (this.start != null && position == 0) {
             x.next = this.start;
             this.start = x;
-            console.log("fail3")
             return;
           }
           let current = this.start;
@@ -54,7 +47,6 @@ class Inventory{
             }
              i++;
             }
-            console.log("fail4")
             x.next = current;
             previous.next = x;
             
@@ -121,7 +113,7 @@ class App{
     let btnReturn = document.querySelector("#btnReturn");
     btnReturn.addEventListener("click", this._returnInventory);
     let btnReturnReverse = document.querySelector("#btnReturnReverse");
-    btnReturnReverse.addEventListener("click", this._showArr);
+    btnReturnReverse.addEventListener("click", this.test);
     
     }
     _updateConsole = (x,y) =>{
@@ -129,6 +121,10 @@ class App{
     }
     _returnInventory = () =>{
         console.log(this._inventory.list())
+        
+    }
+    test = () =>{
+        console.log(this._inventory)
         
     }
     
@@ -145,7 +141,7 @@ class App{
                 this._inventory.add(product);
                 console.log("The product '" + product.info() + "' has been added1.")
             }else{
-                this._inventory.addN(product,position)
+                this._inventory._addN(product,position)
                 console.log("The product '" + product.info() + "' has been added2.")
             }
         }else{
